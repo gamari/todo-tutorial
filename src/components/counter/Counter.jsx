@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 
 export const Counter = () => {
+  // let count = 0;
   const [count, setCount] = useState(0);
 
   const handleUp = (e) => {
+    // count = count + 1;
     setCount(count + 1);
     // setCount((prev) => prev + 1);
   };
 
-  const handleDown = () => {
+  const handleDown = (e) => {
+    // count = count - 1;
+    // console.log(count);
     setCount(count - 1);
     // setCount((prev) => prev - 1);
   };

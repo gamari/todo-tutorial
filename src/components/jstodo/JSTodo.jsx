@@ -55,7 +55,7 @@ export const JSTodo = () => {
   };
 
   return (
-    <div className="border rounded-md px-5 py-3 shadow-sm bg-white w-[400px] h-[500px]">
+    <div className="w-[400px] h-[500px] bg-white border rounded-md px-5 py-3 shadow-sm">
       <h2 className="font-bold text-2xl">TODOアプリ</h2>
 
       <div className="mt-4 flex flex-row items-center justify-center space-x-2">
@@ -90,7 +90,7 @@ export const JSTodo = () => {
                 onChange={(e) => {
                   handleDone(todo);
                 }}
-                disabled={todo.done}
+                // disabled={todo.done}
               />
             </div>
             <div className="flex-1 p-1 pl-3 text-lg">{todo.title}</div>

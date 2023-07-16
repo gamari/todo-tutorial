@@ -5,8 +5,9 @@ import { TodoItem } from "./TodoItem";
 export const TsTodo: FunctionComponent = () => {
   const [title, setTitle] = useState<string>("");
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [search, setSearch] = useState("");
 
-  const handleAdd = () => {
+  const handleAdd = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const randomInt = Math.random() * 10000;
 
     const newTodo: Todo = {
@@ -35,8 +36,12 @@ export const TsTodo: FunctionComponent = () => {
     );
   };
 
+  const handleSearchOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+
   return (
-    <div className="border rounded-md px-5 py-4 shadow-sm bg-white w-[400px] h-[500px]">
+    <div className="w-[400px] h-[500px] bg-white border rounded-md px-5 py-4 shadow-sm flex flex-col">
       <h2 className="font-bold text-2xl">TODOアプリ</h2>
 
       <div className="mt-4 flex flex-row items-center justify-center space-x-2">
@@ -56,15 +61,29 @@ export const TsTodo: FunctionComponent = () => {
         </button>
       </div>
 
-      <div className="mt-6 flex flex-col space-y-3">
-        {todos.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            handleDone={handleDone}
-            handleDelete={handleDelete}
-          />
-        ))}
+      <div className="flex-1 overflow-y-scroll mt-6 pr-2 flex flex-col space-y-3">
+        {todos
+          .filter((todoItem) => {
+            if (!search) return true;
+            return todoItem.title.includes(search);
+          })
+          .map((todo) => (
+            <TodoItem
+              key={todo.id}
+              todo={todo}
+              handleDone={handleDone}
+              handleDelete={handleDelete}
+            />
+          ))}
+      </div>
+
+      <div className="mt-4">
+        <input
+          value={search}
+          onChange={handleSearchOnChange}
+          className="border p-2 rounded-md w-full border-gray-400"
+          placeholder="検索..."
+        />
       </div>
     </div>
   );

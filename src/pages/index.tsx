@@ -1,6 +1,6 @@
 import { JSTodo } from "../components/jstodo/JSTodo";
 import { Counter } from "../components/counter/Counter";
-import { TsTodo } from "@/components/tstodo/TsTodo";
+import { TsTodo } from "../components/tstodo/TsTodo";
 
 export default function Home() {
   return (
